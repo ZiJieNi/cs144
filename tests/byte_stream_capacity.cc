@@ -33,7 +33,6 @@ int main()
       test.execute( BytesBuffered { 2 } );
       test.execute( Peek { "ca" } );
     }
-
     {
       ByteStreamTestHarness test { "overwrite-clear-overwrite", 2 };
 
