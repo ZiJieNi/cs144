@@ -16,7 +16,7 @@ void Writer::push( string data )
   // Your code here.
   if(is_closed())
     return;
-   uint64_t push_size=std::min(data.size(),available_capacity());
+   uint64_t push_size=min(data.size(),available_capacity());
    _buf.append(data.substr(0,push_size));
    push_number+=push_size;
   return;

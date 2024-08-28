@@ -1,6 +1,22 @@
 #pragma once
 
 #include "byte_stream.hh"
+#include <string>
+#include<set>
+#include<vector>
+struct interval{
+  uint64_t start;
+  uint64_t end;
+  std::string data{""};
+  bool operator < (const interval&next)const{
+    if(start==next.start&&end<next.end)
+        return true;
+    else if(start<next.start)
+      return true;
+    else
+      return false;
+  }
+};
 
 class Reassembler
 {
@@ -42,4 +58,7 @@ public:
 
 private:
   ByteStream output_; // the Reassembler writes to this ByteStream
+  std::set<interval>buffer_{};//ZiJie:use it to store segments which can not be pushed immediately
+  uint64_t expected_idx_=0;//ZiJie:next expected_idx,at first it should be assigned 0
+  uint64_t iseof_=UINT64_MAX;
 };
